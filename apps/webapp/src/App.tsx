@@ -1,9 +1,15 @@
-export function App() {
-  
-  return (
-    <>
-      <h1>Hello, World!</h1>
-    </>
-  )
-}
+import "@mantine/core/styles.css";
 
+import { MantineProvider, Button} from "@mantine/core";
+
+export function App() {
+  return (
+    <MantineProvider>
+      {
+        <>
+          <Button onClick={() => {alert("Hello, World!")}}>teste</Button>          
+        </>
+      }
+    </MantineProvider>
+  );
+}

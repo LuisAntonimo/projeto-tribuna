@@ -1,15 +1,9 @@
 import "@mantine/core/styles.css";
+import { MantineProvider } from "@mantine/core";
+import { Router } from "./Router";
 
-import { MantineProvider, Button} from "@mantine/core";
+import './global.css'
 
 export function App() {
-  return (
-    <MantineProvider>
-      {
-        <>
-          <Button onClick={() => {alert("Hello, World!")}}>teste</Button>          
-        </>
-      }
-    </MantineProvider>
-  );
+  return (<MantineProvider>{<Router />}</MantineProvider>);
 }

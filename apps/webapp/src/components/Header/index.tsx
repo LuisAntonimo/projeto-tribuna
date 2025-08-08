@@ -1,13 +1,15 @@
-import { Anchor, Box, Button, Group, Title, Text } from "@mantine/core";
-import styles from "./header.module.css";
+import { Anchor, Button, Group, Title, Text } from "@mantine/core";
+import styles from "./Header.module.css";
+import jsonTabs from "./tabs.json"
 
-const tabs = [{ link: "/about", label: "sobre" }, { link: "#", label: "tribuna de debates" }];
+const tabs = [...jsonTabs];
+const mainRoute = "/";
 
 export default function Header() {
   const anchorList = tabs.map((tab) => {
     return (
-      <Anchor href={tab.link} key={tab.label}>
-        <Text size="lg" c={"white"} fw={700}>
+      <Anchor className={styles.tabAnchor} href={tab.link} key={tab.label} c={"white"} underline="never">
+        <Text size="lg" fw={700}>
           {tab.label}
         </Text>
       </Anchor>
@@ -15,13 +17,14 @@ export default function Header() {
   });
 
   return (
-    <Box>
       <header className={styles.header}>
         <Group justify="space-between" h={"100%"} p={15}>
           <Group>
-            <Title order={1} c={"white"}>
+            <Anchor href={mainRoute} underline="never">
+              <Title order={1} c={"white"}>
               Projeto Tribuna
             </Title>
+            </Anchor>
           </Group>
 
           <Group justify="center" >{anchorList}</Group>
@@ -32,6 +35,5 @@ export default function Header() {
           </Group>
         </Group>
       </header>
-    </Box>
   );
 }

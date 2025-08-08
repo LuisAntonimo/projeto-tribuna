@@ -1,0 +1,7 @@
+.header {
+    background: var(--mantine-color-dark-6);
+}
+
+.tabAnchor :hover{
+   color: var(--mantine-color-red-9);
+}

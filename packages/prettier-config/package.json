@@ -1,0 +1,12 @@
+{
+  "name": "@tribuna/prettier-config",
+  "type": "module",
+  "private": true,
+  "main": ".prettierrc.mjs",
+  "devDependencies": {
+    "prettier": "^3.6.2",
+    "prettier-plugin-css-order": "^2.1.2",
+    "prettier-plugin-organize-imports": "^4.2.0",
+    "prettier-plugin-prisma": "^5.0.0"
+  }
+}

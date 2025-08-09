@@ -2,7 +2,7 @@
 import { Group, useComputedColorScheme, useMantineColorScheme, Button } from '@mantine/core';
 
 
-export function ActionToggle() {
+export default function ActionToggle() {
   const { setColorScheme } = useMantineColorScheme();
   const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
 

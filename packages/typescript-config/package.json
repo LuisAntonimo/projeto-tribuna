@@ -1,12 +1,14 @@
 {
   "name": "@tribuna/typescript-config",
   "private": "true",
+  "type": "module",
   "files": [
     "base.json",
     "react.json"
   ],
   "scripts": {
-    "build": "tsc --build"
+    "build": "tsc --build",
+    "lint": "eslint ."
   },
   "devDependencies": {}
 }

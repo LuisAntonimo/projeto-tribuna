@@ -40,7 +40,7 @@ export default function Header() {
 
 				<Group>
 					<Group visibleFrom="sm">
-						<Button variant="default" radius="xl">
+						<Button variant="outline" color="red" radius="xl">
 							Entrar
 						</Button>
 						<Button color="red" radius="xl">

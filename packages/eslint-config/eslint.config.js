@@ -11,7 +11,6 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export default defineConfig([
-	// IGNORES - Files ESLint should completely skip
 	{
 		ignores: [
 			'**/node_modules',
@@ -23,7 +22,7 @@ export default defineConfig([
 		],
 	},
 
-	// BASE JAVASCRIPT (applies to all .js files across monorepo)
+	// BASE JAVASCRIPT
 	{
 		files: ['**/*.{js,mjs,cjs}'],
 		plugins: { js },
@@ -33,7 +32,7 @@ export default defineConfig([
 		},
 	},
 
-	// TYPESCRIPT (per-project configuration)
+	// TYPESCRIPT
 	...tseslint
 		.config(...mantine, tseslint.configs.recommendedTypeChecked, {
 			extends: [
@@ -52,7 +51,7 @@ export default defineConfig([
 			files: ['**/*.{ts,tsx}'],
 		})),
 
-	// REACT (JSX/TSX files only)
+	// REACT
 	{
 		files: ['**/*.{jsx,tsx}'],
 		...pluginReact.configs.flat.recommended,
@@ -62,14 +61,14 @@ export default defineConfig([
 		...pluginReact.configs.flat['jsx-runtime'],
 	},
 
-	// JSON (package.json and other JSON files)
+	// JSON
 	{
 		files: ['**/*.json'],
 		plugins: { json },
 		language: 'json/json',
-		rules: {
-			'json/*': 'off', // Disable all JSON rules by default
-		},
+		// rules: {
+		// 	'json/*': 'off',
+		// },
 	},
 
 	// MARKDOWN

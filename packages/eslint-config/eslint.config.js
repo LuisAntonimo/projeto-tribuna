@@ -2,15 +2,30 @@ import css from '@eslint/css';
 import js from '@eslint/js';
 import json from '@eslint/json';
 import markdown from '@eslint/markdown';
+import mantine from 'eslint-config-mantine';
 import pluginReact from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
 import { defineConfig } from 'eslint/config';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export default defineConfig([
-	// Base JS configuration (applies to all JS/TS files)
+	// IGNORES - Files ESLint should completely skip
 	{
-		files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+		ignores: [
+			'**/node_modules',
+			'**/dist',
+			'**/build',
+			'**/.next',
+			'**/coverage',
+			'**/*.d.ts',
+		],
+	},
+
+	// BASE JAVASCRIPT (applies to all .js files across monorepo)
+	{
+		files: ['**/*.{js,mjs,cjs}'],
 		plugins: { js },
 		extends: ['js/recommended'],
 		languageOptions: {
@@ -18,28 +33,46 @@ export default defineConfig([
 		},
 	},
 
-	// React configuration (only for JS/TS files)
+	// TYPESCRIPT (per-project configuration)
+	...tseslint
+		.config(...mantine, tseslint.configs.recommendedTypeChecked, {
+			extends: [
+				reactHooks.configs['recommended-latest'],
+				reactRefresh.configs.vite,
+			],
+			languageOptions: {
+				parserOptions: {
+					project: './tsconfig.json',
+					tsconfigRootDir: process.cwd(),
+				},
+			},
+		})
+		.map((config) => ({
+			...config,
+			files: ['**/*.{ts,tsx}'],
+		})),
+
+	// REACT (JSX/TSX files only)
 	{
-		files: ['**/*.{js,jsx,ts,tsx}'], // Only apply to JS/TS files
+		files: ['**/*.{jsx,tsx}'],
 		...pluginReact.configs.flat.recommended,
 	},
 	{
-		files: ['**/*.{js,jsx,ts,tsx}'], // Only apply to JS/TS files
+		files: ['**/*.{jsx,tsx}'],
 		...pluginReact.configs.flat['jsx-runtime'],
 	},
 
-	// TypeScript configuration
-	tseslint.configs.recommended,
-
-	// JSON configuration
+	// JSON (package.json and other JSON files)
 	{
 		files: ['**/*.json'],
 		plugins: { json },
 		language: 'json/json',
-		extends: ['json/recommended'],
+		rules: {
+			'json/*': 'off', // Disable all JSON rules by default
+		},
 	},
 
-	// Markdown configuration
+	// MARKDOWN
 	{
 		files: ['**/*.md'],
 		plugins: { markdown },
@@ -47,15 +80,18 @@ export default defineConfig([
 		extends: ['markdown/recommended'],
 	},
 
-	// CSS configuration
+	// CSS
 	{
 		files: ['**/*.css'],
 		plugins: { css },
 		language: 'css/css',
 		extends: ['css/recommended'],
+		rules: {
+			'css/no-invalid-properties': ['error', { allowUnknownVariables: true }],
+		},
 	},
 
-	// Global settings (applies to all files)
+	// GLOBAL SETTINGS
 	{
 		settings: {
 			react: {

@@ -1,0 +1,12 @@
+{
+  "name": "@tribuna/typescript-config",
+  "private": "true",
+  "files": [
+    "base.json",
+    "react.json"
+  ],
+  "scripts": {
+    "build": "tsc --build"
+  },
+  "devDependencies": {}
+}

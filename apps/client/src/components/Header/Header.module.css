@@ -1,8 +1,8 @@
 .header {
-    background: var(--mantine-color-dark-8);
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+	background: var(--mantine-color-dark-8);
 }
 
-.tabAnchor :hover{
-   color: var(--mantine-color-red-filled-hover);
+.tabAnchor :hover {
+	color: var(--mantine-color-red-filled-hover);
 }

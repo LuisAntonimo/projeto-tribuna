@@ -1,7 +1,8 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+	"extends": "@tribuna/typescript-config/react.json",
+	"include": ["src/**/*", "vite.config.ts"],
+	"compilerOptions": {
+		"outDir": "./dist",
+		"baseUrl": "./src"
+	}
 }

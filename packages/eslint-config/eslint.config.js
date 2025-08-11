@@ -1,4 +1,3 @@
-import css from '@eslint/css';
 import js from '@eslint/js';
 import json from '@eslint/json';
 import markdown from '@eslint/markdown';
@@ -79,16 +78,19 @@ export default defineConfig([
 		extends: ['markdown/recommended'],
 	},
 
-	// CSS
-	{
-		files: ['**/*.css'],
-		plugins: { css },
-		language: 'css/css',
-		extends: ['css/recommended'],
-		rules: {
-			'css/no-invalid-properties': ['error', { allowUnknownVariables: true }],
-		},
-	},
+	// CSS            Não funciona direito com postcss
+	// {
+	// 	files: ['**/*.css'],
+	// 	plugins: { css },
+	// 	language: 'css/css',
+	// 	languageOptions: {
+	// 		tolerant: true,
+	// 	},
+	// 	extends: ['css/recommended'],
+	// 	rules: {
+	// 		'css/no-invalid-properties': ['error', { allowUnknownVariables: true }],
+	// 	},
+	// },
 
 	// GLOBAL SETTINGS
 	{

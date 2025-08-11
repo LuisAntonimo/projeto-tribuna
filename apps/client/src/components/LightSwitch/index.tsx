@@ -1,11 +1,15 @@
 import {
-	Button,
+	ActionIcon,
 	Group,
 	useComputedColorScheme,
 	useMantineColorScheme,
 } from '@mantine/core';
 
-export default function ActionToggle() {
+import styles from './LightSwitch.module.css';
+
+import { RiLightbulbFill, RiLightbulbLine } from '@remixicon/react';
+
+export default function LightSwitch() {
 	const { setColorScheme } = useMantineColorScheme();
 	const computedColorScheme = useComputedColorScheme('light', {
 		getInitialValueInEffect: true,
@@ -13,15 +17,19 @@ export default function ActionToggle() {
 
 	return (
 		<Group justify="center">
-			<Button
+			<ActionIcon
 				onClick={() =>
 					setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')
 				}
 				variant="default"
-				size="xs"
+				size="lg"
 				radius="xl"
 				aria-label="Toggle color scheme"
-			/>
+				p={2}
+			>
+				<RiLightbulbFill className={styles.dark} />
+				<RiLightbulbLine className={styles.light} size={30} />
+			</ActionIcon>
 		</Group>
 	);
 }

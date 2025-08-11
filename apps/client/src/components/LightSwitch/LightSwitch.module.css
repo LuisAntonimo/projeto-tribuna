@@ -1,0 +1,20 @@
+.light {
+	@mixin dark {
+		display: none;
+	}
+
+	@mixin light {
+		display: block;
+	}
+}
+
+.dark {
+	@mixin light {
+		display: none;
+	}
+
+	@mixin dark {
+		display: block;
+		fill: var(--mantine-color-yellow-text);
+	}
+}

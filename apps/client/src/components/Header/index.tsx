@@ -1,8 +1,8 @@
 import { Anchor, Button, Group, Title } from '@mantine/core';
 import { NavLink } from 'react-router';
-import ActionToggle from '../ActionToggle';
 import HeaderTabs from '../HeaderTabs';
 import { MAIN_ROUTE, TAB_LAYOUT } from '../HeaderTabs/tabLayout';
+import LightSwitch from '../LightSwitch';
 import styles from './Header.module.css';
 
 export default function Header() {
@@ -30,7 +30,8 @@ export default function Header() {
 							Inscrever-se
 						</Button>
 					</Group>
-					<ActionToggle />
+
+					<LightSwitch />
 				</Group>
 			</Group>
 		</header>

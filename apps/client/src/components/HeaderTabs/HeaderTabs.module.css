@@ -1,0 +1,3 @@
+.headerTabs :hover {
+	color: var(--mantine-color-red-filled-hover);
+}
